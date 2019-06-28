@@ -37,10 +37,7 @@ public class InterstitialAdsIndicator : MonoBehaviour, IUnityAdsListener
 
     public void OnUnityAdsDidStart(string placementId)
     {
-        if (placementId == this.placementId)
-        {
-            image.color = Color.red;
-        }
+
     }
 
     public void OnUnityAdsDidError(string message)
