@@ -37,7 +37,7 @@ public class RewardedVideoAdsIndicator : MonoBehaviour, IUnityAdsListener
 
     public void OnUnityAdsDidStart(string placementId)
     {
-        image.color = Color.red;
+
     }
 
     public void OnUnityAdsDidError(string message)

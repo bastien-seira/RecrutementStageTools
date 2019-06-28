@@ -4,43 +4,45 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
-
-public class InterstitialAdsIndicator : MonoBehaviour, IUnityAdsListener
+public class RewardedVideoButton : MonoBehaviour, IUnityAdsListener
 {
 
     string gameId = "3203604";
-    string placementId = "interstitialVideo";
+    string placementId = "rewardedVideo";
     bool testMode = true;
-    RawImage image;
+    Button button;
 
     void Start()
     {
-        image = GetComponent<RawImage>();
+        button = GetComponent<Button>();
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameId, testMode);
     }
 
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
     {
-        if (showResult == ShowResult.Failed) {
+        if (showResult == ShowResult.Failed)
+        {
             Debug.LogWarning("Ads failed to finish because an error occured");
         }
+    }
+
+    public void ShowRewardedVideo()
+    {
+        Advertisement.Show(placementId);
     }
 
     public void OnUnityAdsReady(string placementId)
     {
         if (placementId == this.placementId)
         {
-            image.color = Color.green;
+            button.interactable = true;
         }
     }
 
     public void OnUnityAdsDidStart(string placementId)
     {
-        if (placementId == this.placementId)
-        {
-            image.color = Color.red;
-        }
+
     }
 
     public void OnUnityAdsDidError(string message)
